@@ -1,0 +1,8 @@
+module.exports = function(){
+	var controller = {};
+	controller.index = function(req, res){ // parametro 1 : Objeto representa fluxo de requisição. parametro 2: resposta de requisição.
+		// retorna a página index.ejs
+		res.render('index', {nome: 'Contatooh Pagina 27!'});
+	};
+	return controller;
+}

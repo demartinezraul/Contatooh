@@ -1,0 +1,5 @@
+module.exports = function(app) {
+	var controller = app.controllers.home;
+	app.get('/', controller.index); // função app.get equivale ao verbo GET do HTTP função preparada para lidar com requisições do tipo GET.
+
+};
