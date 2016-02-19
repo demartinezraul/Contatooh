@@ -7,6 +7,7 @@
 <button class="btn btn-primary" ng-click="incrementa()">
 	Novo
 </button>
+<input ng-model="filtro" type="search" placeholder="parte do nome">
 <p>Contatos cadastrados: {{total}}</p>
 <div class="table-responsive">
 	<table class="table table-hover">
@@ -15,11 +16,11 @@
 			<th>E-MAIL</th>
 			<th class="text-center">Ação</th>
 		</tr>
-		<tr>
+		<tr ng-repeat="contato in contatos | filter: filtro"> <!-- Indicamos qual lista estamos varrendo nesse caso é (contatos) filter: filtra qualquer campo da tabela -->
 			<td>
-				<a>Contato</a>
+				<a>{{contato.nome}}</a>
 			</td>
-			<td>cont@empresa.com.br</td>
+			<td>{{contato.email}}</td>
 			<td class="text-center">
 				<button class="btn btn-warning">
 					Remover
