@@ -1,21 +1,28 @@
 <!-- Página principal, aquela que receberá views parciais de acordo com as rotas da aplicação -->
 <!doctype html>
 <html ng-app="contatooh"> <!-- área que será controlada pelo angularJS -->
+
 	<head>
+
 		<meta name="viewport" content="width=device-width">
 		<meta charset="UTF-8">
+		
 		<title>Contatooh</title>
 		<link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css">
 		<link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap-theme.css">
 	</head>
+
 	<body class="container">
+
 		<div ng-view></div> <!-- Sinaliza para o sistema de rotas a área da página que receberá views parciais -->
+
 		<script src="vendor/angular/angular.js"></script>
 		<script src="vendor/angular-route/angular-route.js"></script>
+		<script src="vendor/angular-resource/angular-resource.js"></script>
 		<script src="js/main.js"></script>
 		<script src="js/controllers/ContatosController.js"></script>
 		<script src="js/controllers/ContatoController.js"></script>
 	</body>
 </html>
 
-<!-- PAGINA 81 -->
+<!-- PAGINA 122 capitulo 5.14 -->

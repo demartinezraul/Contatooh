@@ -1,2 +1,29 @@
 <!-- View parcial responsável pela exibição do contato selecionado da lista. -->
-<h1>Contato</h1>
+<h1 class="text-center">Contato</h1>
+<p ng-show="mensagem.texto">
+	{{mensagem.texto}}
+</p>
+<form ng-submit="salva()">
+	<div class="form-group"> <!-- Permite agrupar elementos de entrada com seu label. -->
+		<label for="nome">Nome completo</label>
+		<input type="text" class="form-control" id="nome" name="nome" required ng-model="contato.nome"> <!-- form-control: geralmente utilizado em elementos de entrada garantindo largura de 100%. -->
+	</div>
+
+	<div class="form-group"> <!-- Permite agrupar elementos de entrada com seu label. -->
+		<label for="email">Email</label>
+		<div class="input-group"> <!-- Permite adicionar alguma decoração ao elemento de entrada, como se ele fizesse parte dele. -->
+			<span class="input-group-addon">@</span> <!-- Adiciona decoração ao elemento de entrada. Normalmente utilizado em tags do tipo span. -->
+			<input type="email" class="form-control" id="email" 
+			placeholder="email@exemplo.com" name="email" ng-model="contato.email" required> <!-- form-control: geralmente utilizado em elementos de entrada garantindo largura de 100%. -->
+		</div>
+	</div>
+
+	<div>
+		<button type="submit" class="btn btn-primary">
+			Salvar
+		</button>
+		<a href="#/" class="btn btn-default">
+			Voltar
+		</a>
+	</div>
+</form>
