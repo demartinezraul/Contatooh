@@ -10,59 +10,59 @@ var contatos = [
 ]; 
 
 module.exports = function() {
-	var controller = {};
+  
+  var controller = {};
+  
+  controller.listaContatos = function(req, res) {
+      res.json(contatos); // retorna os dados de contatos como json
+  };
 
-	controller.listaContatos = function(req, res) {
-		res.json(contatos); // retorna os dados de contatos como json
-	};
+  controller.obtemContato = function(req, res) {
+    
+  	var idContato = req.params.id;
+  	var contato = contatos.filter(function(contato) {
+  		return contato._id == idContato;
+  	})[0];
+  	contato ? 
+  	res.json(contato) : 
+    res.status(404).send('Contato não encontrado');
+  };
 
-	controller.obtemContato = function(req, res) {
+  controller.removeContato = function(req, res) {
 
-		var idContato = req.params.id;
-		var contato = contatos.filter(function(contato) {
-			return contato._id == idContato;
-		})[0];
+    var idContato = req.params.id;
+    contatos = contatos.filter(function(contato) {
+      return contato._id != idContato;
+    });
+    res.status(204).end();
+  };
 
-		contato ?
-			res.json(contato) :
-				res.status(404).send('Contato não encontrado');
-	};
+  controller.salvaContato = function(req, res) {
 
-	controller.removeContato = function(req, res) {
+    var contato = req.body;
+    contato = contato._id ?
+      atualiza(contato) :
+      adiciona(contato);
+    res.json(contato);
+  };
 
-		var idContato = req.params.id;
-		contatos = contatos.filter(function(contato) {
-			return contato._id != idContato;
-		});
-		res.status(204).end();
-	};
+  function adiciona(contatoNovo) {
 
-	controller.salvaContato = function(req, res) {
+    contatoNovo._id = ++ID_CONTATO_INC;;
+    contatos.push(contatoNovo);
+    return contatoNovo;
+  }
 
-		var contato = req.body;
-		contato = contato._id ?
-			atualiza(contato) :
-			adiciona(contato);
-		res.json(contato);
-	};
+  function atualiza(contatoAlterar) {
 
-	function adiciona(contatoNovo) {
+    contatos = contatos.map(function(contato) {
+      if(contato._id == contatoAlterar._id) {
+        contato = contatoAlterar;
+      }
+      return contato;
+    });
+    return contatoAlterar;
+  }
 
-		contatoNovo._id = ++ID_CONTATO_INC;
-		contatos.push(contatoNovo);
-		return contatoNovo;
-	}
-
-	function atualiza(contatoAlterar) {
-
-		contatos = contatos.map(function(contato) {
-			if(contato._id == contatoAlterar._id) {
-				contato = contatoAlterar;
-			}
-			return contato;
-		});
-		return contatoAlterar;
-	}
-
-	return controller;
+  return controller;
 };
